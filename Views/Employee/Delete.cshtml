@@ -1,0 +1,30 @@
+﻿@model Empal.Models.Employee
+
+<h2>Видалити співробітника</h2>
+
+<table class="table">
+    <tr>
+        <th>Ім'я</th>
+        <td>@Model.FirstName</td>
+    </tr>
+    <tr>
+        <th>Прізвище</th>
+        <td>@Model.LastName</td>
+    </tr>
+</table>
+
+@if (Model != null)
+{
+        <h1>@Model.FirstName @Model.LastName</h1>
+        <p>Department: @Model.Department</p>
+}
+else
+{
+        <p>Співробітник не знайден.</p>
+}
+
+@using (Html.BeginForm("DeleteConfirmed", "Employee", new { id = Model.Id }, FormMethod.Post))
+{
+        <input type="submit" value="Видалити" class="btn btn-danger" />
+    @Html.ActionLink("Скасувати", "Index", null, new { @class = "btn btn-default" })
+}

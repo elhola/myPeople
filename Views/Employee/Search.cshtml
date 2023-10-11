@@ -1,0 +1,45 @@
+﻿@model List<Empal.Models.Employee>
+
+<h2>Пошук співробітників</h2>
+
+@using (Html.BeginForm("Search", "Employee", FormMethod.Get))
+{
+        <div class="form-group">
+        @Html.Label("Прізвище:")
+        @Html.TextBox("lastName", null, new { @class = "form-control" })
+
+        @Html.Label("Відділ:")
+        @Html.TextBox("department", null, new { @class = "form-control" })
+
+        @Html.Label("Посада:")
+        @Html.TextBox("position", null, new { @class = "form-control" })
+
+            <input type="submit" value="Пошук" class="btn btn-primary" />
+        </div>
+}
+
+<table class="table">
+    <tr>
+        <th>Прізвище</th>
+        <th>Ім'я</th>
+        <th>Посада</th>
+        <th>Відділ</th>
+        <th>Дії</th>
+    </tr>
+    @foreach (var employee in Model)
+    {
+            <tr>
+                <td>@employee.LastName</td>
+                <td>@employee.FirstName</td>
+                <td>@employee.Position</td>
+                <td>@employee.Department</td>
+                <td>
+                @Html.ActionLink("Деталі", "Details", new { id = employee.Id })
+                @Html.ActionLink("Редагувати", "Edit", new { id = employee.Id })
+                @Html.ActionLink("Видалити", "Delete", new { id = employee.Id })
+                </td>
+            </tr>
+    }
+</table>
+
+@Html.ActionLink("Назад до списку", "Index")

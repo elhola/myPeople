@@ -1,0 +1,46 @@
+﻿@model Empal.Models.Employee
+
+<h2>Деталі співробітника</h2>
+
+<table class="table">
+    <tr>
+        <th>Ім'я</th>
+        <td>@Model.FirstName</td>
+    </tr>
+    <tr>
+        <th>Прізвище</th>
+        <td>@Model.LastName</td>
+    </tr>
+    <tr>
+        <th>По батькові</th>
+        <td>@Model.Patronymic</td>
+    </tr>
+    <tr>
+        <th>День народження</th>
+        <td>@Model.Birthday.ToShortDateString()</td>
+    </tr>
+    <tr>
+        <th>Відділ</th>
+        <td>@Model.Department</td>
+    </tr>
+    <tr>
+        <th>Посада</th>
+        <td>@Model.Position</td>
+    </tr>
+    <tr>
+        <th>Заробітна плата</th>
+        <td>@Model.Salary.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</td>
+    </tr>
+
+</table>
+
+@if (Model != null)
+{
+   <h1>@Model.FirstName @Model.LastName</h1>
+   <p>Department: @Model.Department</p>
+}
+else
+{
+   <p>Співробітник не знайден.</p>
+}
+@Html.ActionLink("Назад до списку", "Index")
